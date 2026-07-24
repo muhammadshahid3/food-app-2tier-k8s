@@ -1,0 +1,40 @@
+body {
+    background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.hero-section {
+    background: radial-gradient(circle at top left, rgba(13,110,253,0.08), transparent 45%);
+}
+
+.hero-card {
+    background: rgba(255,255,255,0.9);
+    border: 1px solid rgba(13,110,253,0.1);
+}
+
+.food-card {
+    border: none;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.food-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 1rem 2rem rgba(0,0,0,0.12) !important;
+}
+
+.food-card img {
+    height: 220px;
+    object-fit: cover;
+}
+
+.btn {
+    border-radius: 999px;
+}
+
+.modal-content {
+    border: none;
+    box-shadow: 0 1rem 2.5rem rgba(0,0,0,0.2);
+}

@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: food-app
+  namespace: food-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: food-app
+  template:
+    metadata:
+      labels:
+        app: food-app
+    spec:
+      initContainers:
+      - name: run-migrations
+        image: shahiddevops1/food-app-app
+        command: ["sh", "-c", "python manage.py migrate"]
+        envFrom:
+        - configMapRef:
+            name: app-config
+        env:                     
+        - name: DB_USER
+          value: "root"
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secrets
+              key: mysql-root-password
+        - name: SECRET_KEY
+          value: "django-development-key"
+
+      containers:                
+      - name: food-app
+        image: shahiddevops1/food-app-app
+        command: ["sh", "-c", "python manage.py runserver 0.0.0.0:8000"]
+        ports:
+        - containerPort: 8000
+        envFrom:                 
+        - configMapRef:
+            name: app-config
+        env:                     
+        - name: DB_USER
+          value: "root"
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secrets
+              key: mysql-root-password
+        - name: SECRET_KEY
+          value: "django-development-key"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: food-app-service
+  namespace: food-management
+spec:
+  type: NodePort
+  ports:
+    - port: 8000
+      targetPort: 8000
+      nodePort: 30007
+  selector:
+    app: food-app

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: food-management
+data:
+  DB_ENGINE: "mysql"
+  DB_NAME: "food_management_db"
+  DB_USER: "root"
+  DB_HOST: "mysql-service" 
+  DB_PORT: "3306"
+  DEBUG: "True"
+  ALLOWED_HOSTS: "localhost,127.0.0.1,100.31.52.58" # Aap ka EC2 Public IP shamil hai
