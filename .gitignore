@@ -7,4 +7,4 @@ media/
 staticfiles/
 db-secrets.yml
 db-secrets.yaml
-k8s/db-secrets.yaml
+kubernates/db-secrets.yaml
