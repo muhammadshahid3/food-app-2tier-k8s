@@ -6,3 +6,5 @@ db.sqlite3
 media/
 staticfiles/
 db-secrets.yml
+db-secrets.yaml
+k8s/db-secrets.yaml
