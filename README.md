@@ -1,6 +1,6 @@
 # Food App - 2-Tier Kubernetes Deployment 🚀
 
-![Application Screenshot](screen.png)
+![Application Screenshot](show.png)
 
 This repository contains production-ready Kubernetes (K8s) manifest files to deploy and manage a Dockerized Django Food Management Application. The infrastructure architecture is designed as a secure, scalable, and highly available **2-Tier Infrastructure Layer** running inside an isolated Kubernetes workspace.
 
@@ -55,27 +55,27 @@ git clone https://github.com
 cd food-app-k8s-deployment
 
 # Apply Namespace Workspace
-kubectl apply -f k8s/0-namespace.yml
+kubectl apply -f k8s/namespace.yml
 ```
 
 ### 2. Configuration & Secrets Mapping
-Apply your credential abstractions. Ensure `1-db-secrets.yaml` is configured properly:
+Apply your credential abstractions. Ensure `db-secrets.yaml` is configured properly:
 ```bash
-kubectl apply -f k8s/1-db-secrets.yaml
-kubectl apply -f k8s/2-configmap.yaml
+kubectl apply -f k8s/db-secrets.yaml
+kubectl apply -f k8s/configmap.yaml
 ```
 
 ### 3. Spin Up Backend Storage Engine [Tier 2]
 Deploy the stateful persistent volume claim along with your MySQL server:
 ```bash
-kubectl apply -f k8s/3-mysql.yaml
+kubectl apply -f k8s/mysql.yaml
 ```
 *Wait approximately 10-15 seconds for the MySQL stateful container hooks to become healthy.*
 
 ### 4. Fire Up Web Application Engine [Tier 1]
 Apply the web deployment containing your database migrations init-hook and external networking routing service:
 ```bash
-kubectl apply -f k8s/4-app.yml
+kubectl apply -f k8s/app.yml
 ```
 
 ### 5. Verification & Runtime Health Check
