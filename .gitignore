@@ -7,4 +7,7 @@ media/
 staticfiles/
 db-secrets.yml
 db-secrets.yaml
+# Kubernetes secrets may contain credentials; keep secret manifests local.
+Kubernates/*secret*.yaml
+Kubernates/*secret*.yml
 kubernates/db-secrets.yaml
